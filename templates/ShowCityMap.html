@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get City by Coordinates</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 80%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+	<a href="{{url_for('main_page')}}" style="align: center; padding: .5em; color: black; font-size: 24px;">Maps Application Designed using Test-Driven Development</a>
+	<h3>Get City by Coordinates</h3>
+	<div>
+		<div>
+		<form method="POST">
+			<label for="lat">Latitude: </label>
+			<input id='lat' name="lat_input">
+			<label for="long">Longitude: </label>
+			<input id='long' name="long_input">
+			<input id='btn' type="submit" value='Search City'>
+		</form>
+		</div>
+		<div>
+			<h4 id='city'>City: {{city}}</h4>
+		</div>
+	</div>
+	<hr>
+    <div id="map"></div>
+    <script>
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 0, lng: 0},
+          zoom: 10
+        });
+        infoWindow = new google.maps.InfoWindow;
+		var my_lat = '{{lat}}';
+		var my_lng = '{{lng}}';
+		var my_city = '{{city}}';
+		if(my_city) {
+		}
+		else {
+			my_city = 'No City Found!';
+		}
+		if(my_lat) {
+			my_lat = parseFloat(my_lat);
+		}
+		else {
+			my_lat = 0;
+		}
+		if(my_lng) {
+			my_lng = parseFloat(my_lng);
+		}
+		else {
+			my_lng = 0;
+		}
+		var pos = {
+		  lat: my_lat,
+		  lng: my_lng
+		};
+		infoWindow.setPosition(pos);
+		infoWindow.setContent(my_city);
+		infoWindow.open(map);
+		map.setCenter(pos);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFLvllrKhR8s4HdYBaryLNzhhoQYN9D94&callback=initMap">
+    </script>
+</html>
