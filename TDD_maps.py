@@ -7,7 +7,7 @@ from flask_googlemaps import Map
 
 #Initialzing Flask app, config, and Google Maps
 app = Flask(__name__)
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyDFLvllrKhR8s4HdYBaryLNzhhoQYN9D94"
+app.config['GOOGLEMAPS_KEY'] = "Google Maps API key"
 GoogleMaps(app)
 
 @app.route('/')
@@ -111,7 +111,7 @@ def getDistanceOfNearestCity(lat,long):
 	#Perform GeoDB Cities API request
 	url = "https://wft-geo-db.p.rapidapi.com/v1/geo/locations/" + str(lat) + str(long) + "/nearbyCities"
 	headers = {
-    'x-rapidapi-key': "531e3e2b21msh0f7b461051060a8p16e881jsn13aa8ccb4d15",
+    'x-rapidapi-key': "Rapid API",
     'x-rapidapi-host': "wft-geo-db.p.rapidapi.com"
     }
 	response = requests.request("GET", url, headers=headers)
